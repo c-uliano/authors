@@ -77,8 +77,13 @@ const Form = () => {
             <form action="" onSubmit={onSubmitHandler}>
                 <div className="mb-3">
                     {errors.name ? <p className='text-danger'>{errors.name}</p> : ''}
-                    <label htmlFor="title" className="form-label">Author name</label>
-                    <input type="text" className="form-control" id="title" name='name' onChange={onChangeHandler} />
+                    <label htmlFor="name" className="form-label">Author name</label>
+                    <input type="text" className="form-control" id="name" name='name' onChange={onChangeHandler} />
+                </div>
+                <div className="mb-3">
+                    {/* {errors.name ? <p className='text-danger'>{errors.name}</p> : ''} */}
+                    <label htmlFor="book" className="form-label">Favorite book by this author</label>
+                    <input type="text" className="form-control" id="book" name='book' onChange={onChangeHandler} />
                 </div>
                 <button type="cancel" onClick={cancelBtn} className="btn btn-secondary me-2">Cancel</button>
                 <button type="submit" className="btn btn-primary">Add</button>

@@ -9,7 +9,7 @@ const EditOne = () => {
     // * state
     const [author, setAuthor] = useState({});
 
-        // * getting the data for the item
+    // * getting the data for the item
     useEffect(() => {
         axios.get(`http://localhost:8000/api/author/${id}`)
             .then(res => {
@@ -63,8 +63,13 @@ const EditOne = () => {
             <form action="" onSubmit={onSubmitHandler}>
                 <div className="mb-3">
                     {errors.name ? <p className='text-danger'>{errors.name}</p> : ''}
-                    <label htmlFor="title" className="form-label">Author name</label>
-                    <input type="text" className="form-control" id="title" value={author.name} name='name' onChange={onChangeHandler} />
+                    <label htmlFor="name" className="form-label">Author name</label>
+                    <input type="text" className="form-control" id="name" value={author.name} name='name' onChange={onChangeHandler} />
+                </div>
+                <div className="mb-3">
+                    {/* {errors.name ? <p className='text-danger'>{errors.name}</p> : ''} */}
+                    <label htmlFor="book" className="form-label">Favorite book by this author</label>
+                    <input type="text" className="form-control" id="book" value={author.book} name='book' onChange={onChangeHandler} />
                 </div>
                 <button type="cancel" onClick={cancelBtn} className="btn btn-secondary me-2">Cancel</button>
                 <button type="submit" className="btn btn-primary">Update</button>
