@@ -1,2 +1,2 @@
 # Authors assignment
-basic CRUD react app
+got frontend validation working

@@ -8,6 +8,8 @@ const EditOne = () => {
 
     // * state
     const [author, setAuthor] = useState({});
+    const [nameError, setNameError] = useState();
+    const [bookError, setBookError] = useState();
 
     // * getting the data for the item
     useEffect(() => {
@@ -32,8 +34,17 @@ const EditOne = () => {
 
     const formValidator = () => {
         let isValid = true
-        if (author.name.length < 2) {
+        if (author.name.length < 3) {
             isValid = false;
+            setNameError("Name must be at least 3 characters");
+        } else {
+            setNameError("");
+        }
+        if (author.book.length < 3) {
+            isValid = false;
+            setBookError("Book title must be at least 3 characters");
+        } else {
+            setBookError("");
         }
         return isValid
     }
@@ -46,11 +57,7 @@ const EditOne = () => {
                     navigate('/')
                 })
                 .catch(err => console.log(err))
-        } else {
-            setErrors({
-                name: "Name must be at least 3 characters",
-            })
-        }
+        } 
     }
 
     const cancelBtn = (e) => {
@@ -62,12 +69,12 @@ const EditOne = () => {
             <h1>Edit Author</h1>
             <form action="" onSubmit={onSubmitHandler}>
                 <div className="mb-3">
-                    {errors.name ? <p className='text-danger'>{errors.name}</p> : ''}
+                    {nameError ? <p className='text-danger'>{nameError}</p> : ""}
                     <label htmlFor="name" className="form-label">Author name</label>
                     <input type="text" className="form-control" id="name" value={author.name} name='name' onChange={onChangeHandler} />
                 </div>
                 <div className="mb-3">
-                    {/* {errors.name ? <p className='text-danger'>{errors.name}</p> : ''} */}
+                    {bookError ? <p className='text-danger'>{bookError}</p> : ""}
                     <label htmlFor="book" className="form-label">Favorite book by this author</label>
                     <input type="text" className="form-control" id="book" value={author.book} name='book' onChange={onChangeHandler} />
                 </div>
