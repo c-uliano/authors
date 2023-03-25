@@ -31,7 +31,7 @@ const DisplayAll = (props) => {
             <div className="text-center">
                 <Link className="text-center" to="/new">Add an Author</Link>
             </div>
-            <table class="table table-striped">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Author</th>
