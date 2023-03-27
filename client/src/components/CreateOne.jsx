@@ -9,16 +9,16 @@ const Form = () => {
         book: ""
     });
 
-    // const [errors, setErrors] = useState({
-    //     name: "",
-    //     book: ""
-    // });
-    const [nameError, setNameError] = useState();
-    const [bookError, setBookError] = useState();
+    const [errors, setErrors] = useState({
+        name: "",
+        book: ""
+    });
+    // const [nameError, setNameError] = useState();
+    // const [bookError, setBookError] = useState();
 
-    // useEffect(() => {
-    //     console.log(errors);
-    // }, [errors])
+    useEffect(() => {
+        console.log(errors);
+    }, [errors])
     
 
     const navigate = useNavigate();
@@ -32,51 +32,51 @@ const Form = () => {
     }
 
     // ! can't get this to work
-    // const formValidator = () => {
-    //     let isValid = true;
-    //     if (author.name.length < 3) {
-    //         isValid = false;
-    //         setErrors({
-    //             ...errors,
-    //             name: "Name must be at least 3 characters, OBJECT"
-    //         });
-    //     } else {
-    //         setErrors({
-    //             ...errors,
-    //             name: ""
-    //         });
-    //     }
-    //     if (author.book.length < 3) {
-    //         isValid = false;
-    //         setErrors({
-    //             ...errors,
-    //             book: "Book title must be at least 3 characters, OBJECT"
-    //         });
-    //     } else {
-    //         setErrors({
-    //             ...errors,
-    //             book: ""
-    //         });
-    //     }
-    //     return isValid;
-    // }
-
     const formValidator = () => {
-        let isValid = true
+        let isValid = true;
         if (author.name.length < 3) {
             isValid = false;
-            setNameError("Name must be at least 3 characters");
+            setErrors({
+                ...errors,
+                name: ">> Name must be at least 3 characters <<"
+            });
         } else {
-            setNameError("");
+            setErrors({
+                ...errors,
+                name: ""
+            });
         }
         if (author.book.length < 3) {
             isValid = false;
-            setBookError("Book title must be at least 3 characters");
+            setErrors({
+                ...errors,
+                book: ">> Book title must be at least 3 characters <<"
+            });
         } else {
-            setBookError("");
+            setErrors({
+                ...errors,
+                book: ""
+            });
         }
-        return isValid
+        return isValid;
     }
+
+    // const formValidator = () => {
+    //     let isValid = true
+    //     if (author.name.length < 3) {
+    //         isValid = false;
+    //         setNameError("Name must be at least 3 characters");
+    //     } else {
+    //         setNameError("");
+    //     }
+    //     if (author.book.length < 3) {
+    //         isValid = false;
+    //         setBookError("Book title must be at least 3 characters");
+    //     } else {
+    //         setBookError("");
+    //     }
+    //     return isValid
+    // }
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -101,14 +101,14 @@ const Form = () => {
             <h1>Add Author</h1>
             <form action="" onSubmit={onSubmitHandler}>
                 <div className="mb-3">
-                    {nameError ? <p className='text-danger'>{nameError}</p> : ""}
-                    {/* {errors.name ? <p className='text-danger'>{errors.name}</p> : ""} */}
+                    {/* {nameError ? <p className='text-danger'>{nameError}</p> : ""} */}
+                    {errors.name ? <p className='text-danger'>{errors.name}</p> : ""}
                     <label htmlFor="name" className="form-label">Author name</label>
                     <input type="text" className="form-control" id="name" name='name' onChange={onChangeHandler} />
                 </div>
                 <div className="mb-3">
-                    {bookError ? <p className='text-danger'>{bookError}</p> : ""}
-                    {/* {errors.book ? <p className='text-danger'>{errors.book}</p> : ""} */}
+                    {/* {bookError ? <p className='text-danger'>{bookError}</p> : ""} */}
+                    {errors.book ? <p className='text-danger'>{errors.book}</p> : ""}
                     <label htmlFor="book" className="form-label">Favorite book by this author</label>
                     <input type="text" className="form-control" id="book" name='book' onChange={onChangeHandler} />
                 </div>
